@@ -1,12 +1,12 @@
 class Account {
     int balance;
 
-    // No-argument constructor
+    
     Account() {
         balance = 0;
     }
 
-    // One-argument constructor
+    
     Account(int b) {
         balance = b;
     }
