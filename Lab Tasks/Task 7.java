@@ -2,13 +2,13 @@ class Distance {
     int feet;
     int inches;
 
-    // No-argument constructor
+    
     Distance() {
         feet = 0;
         inches = 0;
     }
 
-    // Two-argument constructor
+    
     Distance(int f, int i) {
         feet = f;
         inches = i;
