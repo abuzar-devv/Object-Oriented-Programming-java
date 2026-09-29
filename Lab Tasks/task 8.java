@@ -3,21 +3,21 @@ class Marks {
     int mark2;
     int mark3;
 
-    // No-argument constructor
+    
     Marks() {
         mark1 = 0;
         mark2 = 0;
         mark3 = 0;
     }
 
-    // Three-argument constructor
+    
     Marks(int m1, int m2, int m3) {
         mark1 = m1;
         mark2 = m2;
         mark3 = m3;
     }
 
-    // Method to calculate sum
+    
     int calculateSum() {
         return mark1 + mark2 + mark3;
     }
