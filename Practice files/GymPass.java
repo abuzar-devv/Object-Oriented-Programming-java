@@ -17,10 +17,10 @@ import java.util.Scanner;
 
 public class GymPass {
 
-    public String name;
-    int age;
-    String section;
-    int price;
+    private String name;
+    private int age;
+    private String section;
+    private int price;
 
     GymPass(String name, int age, String section) {
 
@@ -41,13 +41,13 @@ public class GymPass {
 
     public void summary() {
 
-        System.out.println("Name:" + name);
-        System.out.println("Age:" + age);
-        System.out.println("Section:" + section);
-        System.out.println("Price:" + price);
+        System.out.println("Name: " + name);
+        System.out.println("Age: " + age);
+        System.out.println("Section: " + section);
+        System.out.println("Price: " + price);
 
         if (price == 0) {
-            System.out.println("Invalid section");
+            System.out.println("INVALID SECTION");
         }
     }
 }
@@ -58,6 +58,7 @@ class GymApp {
 
         Scanner input = new Scanner(System.in);
 
+        
         System.out.println("Enter name:");
         String name = input.nextLine();
 
@@ -66,14 +67,16 @@ class GymApp {
         input.nextLine();
 
         System.out.println("Enter section:");
-        String section = input.nextLine();
+        String section = input.nextLine().toLowerCase();
 
         GymPass pass1 = new GymPass(name, age, section);
+
         System.out.println("------------Pass Created----------");
         pass1.summary();
 
         System.out.println("------------------------------------");
 
+        
         System.out.println("Enter name:");
         name = input.nextLine();
 
@@ -82,9 +85,10 @@ class GymApp {
         input.nextLine();
 
         System.out.println("Enter section:");
-        section = input.nextLine();
+        section = input.nextLine().toLowerCase();
 
         GymPass pass2 = new GymPass(name, age, section);
+
         System.out.println("------------Pass Created----------");
         pass2.summary();
     }
