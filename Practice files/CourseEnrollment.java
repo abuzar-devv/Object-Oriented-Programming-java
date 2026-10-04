@@ -1,44 +1,24 @@
 /*
 Task 2 — Student Course Enrollment
 
-A university needs a small system to decide whether a student can enroll
-in a course.
+Build a university enrollment system.
 
-The system takes:
-- Student name
-- Student ID
+Student data:
+- Name
+- 8-character ID
 - Course code
 - Credit hours
 
-Allowed course codes:
-MATH101, CS101, STAT201, DS201
+Offered courses: MATH101, CS101, STAT201, DS201
+Credit hours: 3 or 4
 
-Allowed credit hours:
-3 or 4
+An enrollment is valid only when all data is valid.
+Invalid enrollments must be rejected without crashing.
 
-An enrollment is valid only if:
-- Student ID is exactly 8 characters long
-- Student name is not empty
-- Course code exists in the allowed course set
-- Credit hours are 3 or 4
+Test at least 3 valid/invalid enrollment cases and report each result.
+Keep enrollment data private and preserve its validity state.
 
-Requirements:
-- Create a class representing the enrollment.
-- All fields must be private.
-- Take input using Scanner inside the constructor.
-- Perform validation inside the constructor.
-- Use a data structure for the allowed course codes instead of
-  writing separate if conditions for every course.
-- The object must remember whether the enrollment is valid.
-- main() must create at least 3 enrollment objects:
-  1. One valid enrollment
-  2. One with an invalid student ID
-  3. One with an invalid course code
-- Print the result for each enrollment.
-- Do not use setters.
-- Do not use loops yet.
-- Do not use inheritance, interfaces, ArrayList, HashMap, or concepts
-  that we have not covered yet.
+Do not use setters, loops, inheritance, interfaces, ArrayList, or HashMap.
 */
 
 import java.util.Arrays;
@@ -51,31 +31,62 @@ public class CourseEnrollment {
     private String course_code;
     private int credit_hours;
     String[] courses={"MATH101", "CS101", "STAT201","DS201"};
+    String[] rollNumbers_set = {"CS-25001", "DS-25002", "AI-25003", "SE-25004", "EE-25005", "ME-25006", "CE-25007", "MT-25008", "PH-25009", "CH-25010"};
 
     CourseEnrollment(Scanner input){
 
+        System.out.println("-------Course Registration-------");
+        System.out.println("Enter id:");
+        id=input.nextLine().toUpperCase();
+
         if (id.length()==8){
-            System.out.println("Enter your name:");
-            name=input.nextLine();
 
-            if(name.length()!=0){
-                System.out.println("Enter your course code , courses being offered are :\"MATH101\", \"CS101\", \"STAT201\",\"DS201\" ");
-                course_code=input.nextLine();
+            if (Arrays.asList(rollNumbers_set).contains(id)){
+                System.out.println("Enter your name:");
+                name=input.nextLine();
 
-                if(Arrays.asList(courses).contains(course_code)){
-                    System.out.println("Enter credit hours 3 or 4");
-                    
+                if(name.length()!=0){
+                    System.out.println("Enter your course code , courses being offered are :\"MATH101\", \"CS101\", \"STAT201\",\"DS201\" ");
+                    course_code=input.nextLine().toUpperCase();
+
+                    if(Arrays.asList(courses).contains(course_code)){
+                        System.out.println("Enter credit hours (3 or 4)");
+                        credit_hours=input.nextInt();
+                        input.nextLine();
+
+                        if(credit_hours==3 || credit_hours==4){
+                            System.out.println("Course registered");
+                            System.out.println("Name:"+name+"\nRoll no:"+id+"\nCourse code:"+course_code+"\nCredit hours:"+credit_hours);
+
+                        }else {
+                            System.out.println("Credit hours can be 3 or 4 only");
+                        }
+
+                    }else {
+                        System.out.println("Course not found!");
+                    }
+
+                }else{
+                    System.out.println("Must enter name to register a course!");
                 }
-
-
-            }else{
-                System.out.println("Enter valid course code");
+            }else {
+                System.out.println("ID no not found!");
             }
-
         }else{
             System.out.println("Id should be of length 8");
         }
 
     }
 
+}
+
+class CourseEnrollmentRun{
+    public static void main(String[] args) {
+
+        Scanner input=new Scanner(System.in);
+        CourseEnrollment Student_1=new CourseEnrollment(input);
+        CourseEnrollment Student_2=new CourseEnrollment(input);
+        CourseEnrollment Student_3=new CourseEnrollment(input);
+
+    }
 }
